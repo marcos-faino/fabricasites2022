@@ -1,6 +1,7 @@
 from django.db import models
 from stdimage.models import StdImageField
 
+
 class Base(models.Model):
     criado = models.DateTimeField(auto_now_add=True)
     modificado= models.DateTimeField(auto_now=True)
@@ -31,4 +32,15 @@ class Funcionario(Base):
                          variations={'thumb': {'width': 600,
                                                'height': 600,
                                                'crop': True}})
+    facebook = models.CharField('Face', max_length=100)
+    twitter = models.CharField('Twitter', max_length=100)
+    instagram = models.CharField('Insta', max_length=100)
 
+
+class Servico(Base):
+    imagem = StdImageField('Imagem', upload_to='servicos',
+                           variations={'thumb': {'width': 1000,
+                                                 'height': 667,
+                                                 'crop': True}})
+    nome = models.CharField('Nome', max_length=100)
+    descricao = models.TextField('Descrição', max_length=1000)
